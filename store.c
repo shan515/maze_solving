@@ -106,8 +106,93 @@ void shortest_path(int i, int j, int destination)
       {
         graph[i][j+2] += graph[i][j+1];
       }
+      else
+      {
+        flag =1;
+      }
     }
-    else if()
+    else if((graph[i-1][j] != -1)&&(graph[i+1][j] != -1)&&(graph[i][j+1] != -1)&&(graph[i][j-1] == -1))   //T formation
+    {
+      if(graph[i-1][j]!= destination)
+      {
+        graph[i-2][j] += graph[i-1][j];
+      }
+      else
+      {
+        flag = 1;
+      }
+      if(graph[i+1][j]!= destination)
+      {
+        graph[i+2][j] += graph[i+1][j];
+      }
+      else
+      {
+        flag =1;
+      }
+      if(graph[i][j+1]!= destination)
+      {
+        graph[i][j+2] += graph[i][j+1];
+      }
+      else
+      {
+        flag =1;
+      }
+    }
+    else if((graph[i-1][j] != -1)&&(graph[i+1][j] == -1)&&(graph[i][j+1] != -1)&&(graph[i][j-1] != -1))  // -| formation
+    {
+      if(graph[i-1][j]!= destination)
+      {
+        graph[i-2][j] += graph[i-1][j];
+      }
+      else
+      {
+        flag = 1;
+      }
+      if(graph[i][j-1]!= destination)
+      {
+        graph[i][j-2] += graph[i][j-1];
+      }
+      else
+      {
+        flag =1;
+      }
+      if(graph[i][j+1]!= destination)
+      {
+        graph[i][j+2] += graph[i][j+1];
+      }
+      else
+      {
+        flag =1;
+      }
+    }
+    else if((graph[i-1][j] == -1)&&(graph[i+1][j] != -1)&&(graph[i][j+1] != -1)&&(graph[i][j-1] != -1)) // |- formation
+    {
+      if(graph[i+1][j]!= destination)
+      {
+        graph[i+2][j] += graph[i+1][j];
+      }
+      else
+      {
+        flag =1;
+      }
+      if(graph[i][j-1]!= destination)
+      {
+        graph[i][j-2] += graph[i][j-1];
+      }
+      else
+      {
+        flag =1;
+      }
+      if(graph[i][j+1]!= destination)
+      {
+        graph[i][j+2] += graph[i][j+1];
+      }
+      else
+      {
+        flag =1;
+      }
+    }
+    else if((graph[i-1][j] == -1)&&(graph[i+1][j] != -1)&&(graph[i][j+1] != -1)&&(graph[i][j-1] != -1))
   }
 }
 
