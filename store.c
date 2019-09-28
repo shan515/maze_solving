@@ -55,17 +55,32 @@ char direction()
 int distance()
 {
 
-    int x = 29;
-    dist = (encoder()/x);
-    return dist;
+    
 
 }
 
-int encoder()
+   
+int count; 
+void IRAM_ATTR ISR()
 {
-
+   extra_sensors();
+   while (w==1)
+   {
+       count+=1;
+       extra_sensors();
+   }
+    
+}
+ 
+int interrupt()
+{
+    extra_sensors();
+    attachInterrupt(GPIO_NUM4, ISR, FALLING);
+    return count;
 
 }
+
+
 
 void mark_path(int i, int j)
 {
@@ -708,6 +723,7 @@ void line_follow(void *arg)
         calc_error();
         calc_correction();
         bot_forward(MCPWM_UNIT_0, MCPWM_TIMER_0, left_pwm, right_pwm);
+        interrupt();
         distance();
         turn_detection();
         plot_graph();
