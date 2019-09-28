@@ -12,10 +12,10 @@
 #include "TUNING.h"
 using namespace std;
 
-char graph[20][20];
+int graph[100][100];
 char dir[4] = {N,E,S,W};
-int i=5,j=10;
-graph[5][10]=S;
+int i=50,j=100;
+graph[50][100]=-5;//START
 char prev_d = N;
 int dist=1;
 
@@ -76,7 +76,7 @@ void shortest_path(int i, int j, int destination)
 {
   while(flag = 0)
   {
-    if((graph[i-1][j] != "X")&&(graph[i+1][j] != "X")&&(graph[i][j+1] != "X")&&(graph[i][j-1] != "X"))   //+ formation
+    if((graph[i-1][j] != -1)&&(graph[i+1][j] != -1)&&(graph[i][j+1] != -1)&&(graph[i][j-1] != -1))   //+ formation
     {
       if(graph[i-1][j]!= destination)
       {
@@ -123,8 +123,8 @@ void plot_graph()
                       j--;
                       graph[i][j]=distance;
                       j--;
-                      if(graph[i][j]="X")
-                          graph[i][j]="R";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -133,8 +133,8 @@ void plot_graph()
                       i++;
                       graph[i][j]=distance;
                       i++;
-                      if(graph[i][j]="X")
-                          graph[i][j]="R";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -143,8 +143,8 @@ void plot_graph()
                       j++;
                       graph[i][j]=distance;
                       j++;
-                      if(graph[i][j]="X")
-                          graph[i][j]="R";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -153,8 +153,8 @@ void plot_graph()
                       i--;
                       graph[i][j]=distance;
                       i--;
-                      if(graph[i][j]="X")
-                          graph[i][j]="R";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -167,8 +167,8 @@ void plot_graph()
                       j--;
                       graph[i][j]=distance;
                       j--;
-                      if(graph[i][j]="X")
-                          graph[i][j]="L";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -177,8 +177,8 @@ void plot_graph()
                       i++;
                       graph[i][j]=distance;
                       i++;
-                      if(graph[i][j]="X")
-                          graph[i][j]="L";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -187,8 +187,8 @@ void plot_graph()
                       j++;
                       graph[i][j]=distance;
                       j++;
-                      if(graph[i][j]="X")
-                          graph[i][j]="L";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -197,8 +197,8 @@ void plot_graph()
                       i--;
                       graph[i][j]=distance;
                       i--;
-                      if(graph[i][j]="X")
-                          graph[i][j]="L";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -211,9 +211,9 @@ void plot_graph()
                         j--;
                         graph[i][j]=distance;
                         j--;
-                        graph[i+1][j]="Z";
-                        if(graph[i][j]="X")
-                            graph[i][j]="T";
+                        graph[i+1][j]=-2;
+                        if(graph[i][j]=-1)
+                            graph[i][j]=0;
                         else
                           find_untrav();
                     }
@@ -222,9 +222,9 @@ void plot_graph()
                       i++;
                       graph[i][j]=distance;
                       i++;
-                      graph[i][j+1]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="T";
+                      graph[i][j+1]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -233,9 +233,9 @@ void plot_graph()
                       j++;
                       graph[i][j]=distance;
                       j++;
-                      graph[i-1][j]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="T";
+                      graph[i-1][j]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -244,9 +244,9 @@ void plot_graph()
                       i--;
                       graph[i][j]=distance;
                       i--;
-                      graph[i][j-1]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="T";
+                      graph[i][j-1]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -260,9 +260,9 @@ void plot_graph()
                       j--;
                       graph[i][j]=distance;
                       j--;
-                      graph[i+1][j]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="|-";
+                      graph[i+1][j]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -271,9 +271,9 @@ void plot_graph()
                       i++;
                       graph[i][j]=distance;
                       i++;
-                      graph[i][j+1]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="|-";
+                      graph[i][j+1]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -282,9 +282,9 @@ void plot_graph()
                       j++;
                       graph[i][j]=distance;
                       j++;
-                      graph[i-1][j]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="|-";
+                      graph[i-1][j]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -293,9 +293,9 @@ void plot_graph()
                       i--;
                       graph[i][j]=distance;
                       i--;
-                      graph[i][j-1]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="|-";
+                      graph[i][j-1]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -308,10 +308,10 @@ void plot_graph()
                       j--;
                       graph[i][j]=distance;
                       j--;
-                      graph[i][j-1]="Z";
-                      graph[i+1][j]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="+";
+                      graph[i][j-1]=-2;
+                      graph[i+1][j]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -320,10 +320,10 @@ void plot_graph()
                       i++;
                       graph[i][j]=distance;
                       i++;
-                      graph[i+1][j]="Z";
-                      graph[i][j+1]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="+";
+                      graph[i+1][j]=-2;
+                      graph[i][j+1]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -332,10 +332,10 @@ void plot_graph()
                       j++;
                       graph[i][j]=distance;
                       j++;
-                      graph[i-1][j]="Z";
-                      graph[i][j+1]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="+";
+                      graph[i-1][j]=-2;
+                      graph[i][j+1]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -344,10 +344,10 @@ void plot_graph()
                       i--;
                       graph[i][j]=distance;
                       i--;
-                      graph[i-1][j]="Z";
-                      graph[i][j-1]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="+";
+                      graph[i-1][j]=-2;
+                      graph[i][j-1]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -360,9 +360,9 @@ void plot_graph()
                       j--;
                       graph[i][j]=distance;
                       j--;
-                      graph[i][j-1]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="-|";
+                      graph[i][j-1]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -371,9 +371,9 @@ void plot_graph()
                       i++;
                       graph[i][j]=distance;
                       i++;
-                      graph[i+1][j]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="-|";
+                      graph[i+1][j]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -382,9 +382,9 @@ void plot_graph()
                       j++;
                       graph[i][j]=distance;
                       j++;
-                      graph[i][j+1]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="-|";
+                      graph[i][j+1]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -393,9 +393,9 @@ void plot_graph()
                       i--;
                       graph[i][j]=distance;
                       i--;
-                      graph[i-1][j]="Z";
-                      if(graph[i][j]="X")
-                          graph[i][j]="-|";
+                      graph[i-1][j]=-2;
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -408,8 +408,8 @@ void plot_graph()
                       j--;
                       graph[i][j]=distance;
                       j--;
-                      if(graph[i][j]="X")
-                          graph[i][j]="U";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -418,8 +418,8 @@ void plot_graph()
                       i++;
                       graph[i][j]=distance;
                       i++;
-                      if(graph[i][j]="X")
-                          graph[i][j]="U";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -428,8 +428,8 @@ void plot_graph()
                       j++;
                       graph[i][j]=distance;
                       j++;
-                      if(graph[i][j]="X")
-                          graph[i][j]="U";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -438,8 +438,8 @@ void plot_graph()
                       i--;
                       graph[i][j]=distance;
                       i--;
-                      if(graph[i][j]="X")
-                          graph[i][j]="U";
+                      if(graph[i][j]=-1)
+                          graph[i][j]=0;
                       else
                         find_untrav();
                     }
@@ -590,7 +590,7 @@ void turn_detection()
         //turning();
     } else if(sensor_value[1]>60&&sensor_value[2]>60&&sensor_value[3]>60&&y==0&&x==1&&z==0)
     {
-        node =4;// |- turn
+        node =4;// + turn
         //turning();
     }
     else if(sensor_value[1]>60&&sensor_value[2]>60&&sensor_value[3]>60&&sensor_value[0]>60&&x==0&&y==0&&z==1)
