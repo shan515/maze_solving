@@ -35,6 +35,11 @@ SOFTWARE.
 #include "driver/mcpwm.h"
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "esp_system.h"
+#include "nvs_flash.h"
+#include "nvs.h"
 
 #define GPIO_PWM0A_OUT 27   //Set GPIO 15 as PWM0A - Enable
 #define GPIO_PWM0B_OUT 14   //Set GPIO 16 as PWM0B 
@@ -80,5 +85,9 @@ void bot_spot_left(mcpwm_unit_t mcpwm_num, mcpwm_timer_t timer_num , float duty_
 void bot_spot_right(mcpwm_unit_t mcpwm_num, mcpwm_timer_t timer_num , float duty_cycle1, float duty_cycle2);
 
 void bot_stop(mcpwm_unit_t mcpwm_num, mcpwm_timer_t timer_num);
+
+int* get_from_flash();
+
+void save_to_flash(int* message);
 
 #endif
