@@ -14,8 +14,8 @@ using namespace std;
 
 char graph[20][20];
 char dir[4] = {N,E,S,W};
-int i=0,j=0;
-graph[0][0]=S;
+int i=5,j=10;
+graph[5][10]=S;
 char prev_d = N;
 int dist=1;
 
@@ -65,12 +65,50 @@ int encoder()
 {
 
 
-
 }
 
 void mark_path(int i, int j)
 {
 
+}
+
+void shortest_path(int i, int j, int destination)
+{
+  while(flag = 0)
+  {
+    if((graph[i-1][j] != "X")&&(graph[i+1][j] != "X")&&(graph[i][j+1] != "X")&&(graph[i][j-1] != "X"))   //+ formation
+    {
+      if(graph[i-1][j]!= destination)
+      {
+        graph[i-2][j] += graph[i-1][j];
+      }
+      else
+      {
+        flag = 1;
+      }
+      if(graph[i+1][j]!= destination)
+      {
+        graph[i+2][j] += graph[i+1][j];
+      }
+      else
+      {
+        flag =1;
+      }
+      if(graph[i][j-1]!= destination)
+      {
+        graph[i][j-2] += graph[i][j-1];
+      }
+      else
+      {
+        flag =1;
+      }
+      if(graph[i][j+1]!= destination)
+      {
+        graph[i][j+2] += graph[i][j+1];
+      }
+    }
+    else if()
+  }
 }
 
 void plot_graph()
@@ -82,316 +120,329 @@ void plot_graph()
                     //distance();
                     if(prev_d==N)
                     {
-                        for(int k=j; k<j+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j+dist;
+                      j--;
+                      graph[i][j]=distance;
+                      j--;
+                      if(graph[i][j]="X")
+                          graph[i][j]="R";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==E)
                     {
-                      for(int k=i; k<i+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i+dist;
+                      i++;
+                      graph[i][j]=distance;
+                      i++;
+                      if(graph[i][j]="X")
+                          graph[i][j]="R";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==S)
                     {
-                        for(int k=j; k>j-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j-dist;
+                      j++;
+                      graph[i][j]=distance;
+                      j++;
+                      if(graph[i][j]="X")
+                          graph[i][j]="R";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==W)
                     {
-                        for(int k=i; k>i-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i-dist;
+                      i--;
+                      graph[i][j]=distance;
+                      i--;
+                      if(graph[i][j]="X")
+                          graph[i][j]="R";
+                      else
+                        find_untrav();
                     }
-                    graph[i][j]=N;
-                    char d = direction();
-                    if(d==N)
-                        i++;
-                    else if(d==E)
-                        j--;
-                    else if(d==S)
-                        i--;
-                    else if(d==W)
-                        j++;
-                    prev_d=d;
                 }
                 else if(node == 2)//left
                 {
-                    distance();
+                    //distance();
                     if(prev_d==N)
                     {
-                        for(int k=j; k<j+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j+dist;
+                      j--;
+                      graph[i][j]=distance;
+                      j--;
+                      if(graph[i][j]="X")
+                          graph[i][j]="L";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==E)
                     {
-                        for(int k=i; k<i+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i+dist;
+                      i++;
+                      graph[i][j]=distance;
+                      i++;
+                      if(graph[i][j]="X")
+                          graph[i][j]="L";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==S)
                     {
-                      for(int k=j; k>j-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j-dist;
+                      j++;
+                      graph[i][j]=distance;
+                      j++;
+                      if(graph[i][j]="X")
+                          graph[i][j]="L";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==W)
                     {
-                        for(int k=i; k>i-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i-dist;
+                      i--;
+                      graph[i][j]=distance;
+                      i--;
+                      if(graph[i][j]="X")
+                          graph[i][j]="L";
+                      else
+                        find_untrav();
                     }
-                    graph[i][j]=N;
-                    int d = direction();
-                    if(d==N)
-                        i--;
-                    else if(d==E)
-                        j++;
-                    else if(d==S)
-                        i++;
-                    else if(d==W)
-                        j--;
                 }
                 else if(node == 3)//T
                 {
                     distance();
                     if(prev_d==N)
                     {
-                        for(int k=j; k<j+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j+dist;
+                        j--;
+                        graph[i][j]=distance;
+                        j--;
+                        graph[i+1][j]="Z";
+                        if(graph[i][j]="X")
+                            graph[i][j]="T";
+                        else
+                          find_untrav();
                     }
                     else if(prev_d==E)
                     {
-                        for(int k=i; k<i+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i+dist;
+                      i++;
+                      graph[i][j]=distance;
+                      i++;
+                      graph[i][j+1]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="T";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==S)
                     {
-                      for(int k=j; k>j-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j-dist;
+                      j++;
+                      graph[i][j]=distance;
+                      j++;
+                      graph[i-1][j]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="T";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==W)
                     {
-                        for(int k=i; k>i-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i-dist;
+                      i--;
+                      graph[i][j]=distance;
+                      i--;
+                      graph[i][j-1]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="T";
+                      else
+                        find_untrav();
                     }
-                    graph[i][j]=N;
-                    int d = direction();
-                    if(d==N)
-                        i--;
-                    else if(d==E)
-                        j++;
-                    else if(d==S)
-                        i++;
-                    else if(d==W)
-                        j--;
+
                 }
                 else if(node == 4)//|-
                 {
                     distance();
                     if(prev_d==N)
                     {
-                        for(int k=j; k<j+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j+dist;
+                      j--;
+                      graph[i][j]=distance;
+                      j--;
+                      graph[i+1][j]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="|-";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==E)
                     {
-                        for(int k=i; k<i+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i+dist;
+                      i++;
+                      graph[i][j]=distance;
+                      i++;
+                      graph[i][j+1]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="|-";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==S)
                     {
-                      for(int k=j; k>j-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j-dist;
+                      j++;
+                      graph[i][j]=distance;
+                      j++;
+                      graph[i-1][j]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="|-";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==W)
                     {
-                        for(int k=i; k>i-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i-dist;
+                      i--;
+                      graph[i][j]=distance;
+                      i--;
+                      graph[i][j-1]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="|-";
+                      else
+                        find_untrav();
                     }
-                    graph[i][j]=N;
-                    j++;
                 }
                 else if(node == 5)// +
                 {
                     distance();
                     if(prev_d==N)
                     {
-                        for(int k=j; k<j+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j+dist;
+                      j--;
+                      graph[i][j]=distance;
+                      j--;
+                      graph[i][j-1]="Z";
+                      graph[i+1][j]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="+";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==E)
                     {
-                        for(int k=i; k<i+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i+dist;
+                      i++;
+                      graph[i][j]=distance;
+                      i++;
+                      graph[i+1][j]="Z";
+                      graph[i][j+1]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="+";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==S)
                     {
-                      for(int k=j; k>j-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j-dist;
+                      j++;
+                      graph[i][j]=distance;
+                      j++;
+                      graph[i-1][j]="Z";
+                      graph[i][j+1]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="+";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==W)
                     {
-                        for(int k=i; k>i-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i-dist;
+                      i--;
+                      graph[i][j]=distance;
+                      i--;
+                      graph[i-1][j]="Z";
+                      graph[i][j-1]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="+";
+                      else
+                        find_untrav();
                     }
-                    graph[i][j]=N;
-                    int d = direction();
-                    if(d==N)
-                        i--;
-                    else if(d==E)
-                        j++;
-                    else if(d==S)
-                        i++;
-                    else if(d==W)
-                        j--;
                 }
                 else if(node == 6)//-|
                 {
                     distance();
                     if(prev_d==N)
                     {
-                        for(int k=j; k<j+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j+dist;
+                      j--;
+                      graph[i][j]=distance;
+                      j--;
+                      graph[i][j-1]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="-|";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==E)
                     {
-                        for(int k=i; k<i+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i+dist;
+                      i++;
+                      graph[i][j]=distance;
+                      i++;
+                      graph[i+1][j]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="-|";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==S)
                     {
-                      for(int k=j; k>j-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j-dist;
+                      j++;
+                      graph[i][j]=distance;
+                      j++;
+                      graph[i][j+1]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="-|";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==W)
                     {
-                        for(int k=i; k>i-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i-dist;
+                      i--;
+                      graph[i][j]=distance;
+                      i--;
+                      graph[i-1][j]="Z";
+                      if(graph[i][j]="X")
+                          graph[i][j]="-|";
+                      else
+                        find_untrav();
                     }
-                    graph[i][j]=N;
-                    int d = direction();
-                    if(d==N)
-                        i--;
-                    else if(d==E)
-                        j++;
-                    else if(d==S)
-                        i++;
-                    else if(d==W)
-                        j--;
                 }
                 else if(node ==7)//dead end
                 {
                     distance();
                     if(prev_d==N)
                     {
-                        for(int k=j; k<j+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j+dist;
+                      j--;
+                      graph[i][j]=distance;
+                      j--;
+                      if(graph[i][j]="X")
+                          graph[i][j]="U";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==E)
                     {
-                        for(int k=i; k<i+dist;k++)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i+dist;
+                      i++;
+                      graph[i][j]=distance;
+                      i++;
+                      if(graph[i][j]="X")
+                          graph[i][j]="U";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==S)
                     {
-                      for(int k=j; k>j-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        j=j-dist;
+                      j++;
+                      graph[i][j]=distance;
+                      j++;
+                      if(graph[i][j]="X")
+                          graph[i][j]="U";
+                      else
+                        find_untrav();
                     }
                     else if(prev_d==W)
                     {
-                        for(int k=i; k>i-dist;k--)
-                        {
-                          graph[i][j]=P;
-                        }
-                        i=i-dist;
+                      i--;
+                      graph[i][j]=distance;
+                      i--;
+                      if(graph[i][j]="X")
+                          graph[i][j]="U";
+                      else
+                        find_untrav();
                     }
-                    graph[i][j]=D;
-                    int d = direction();
-                    if(d==N)
-                        j--;
-                    else if(d==E)
-                        i--;
-                    else if(d==S)
-                        j++;
-                    else if(d==W)
-                        i++;
-                }
             }
 
 
@@ -403,12 +454,12 @@ void turning()
    vTaskDelay( 1000 / portTICK_PERIOD_MS );
     int m=1;
      if(node==2)
-    {
+    	{
             //vTaskDelay( 1000 / portTICK_PERIOD_MS );
             while(m==1)
              {
-           read_sensors();
-           calc_sensor_values();
+        	    read_sensors();
+        	    calc_sensor_values();
                 extra_sensors();
                 bot_spot_right(MCPWM_UNIT_0, MCPWM_TIMER_0, 68, 68);
                 if (sensor_value[1]>=150 && sensor_value[2]>=150 && x==1)
@@ -416,12 +467,12 @@ void turning()
              }
         }
      else if(node==1)
-    {
+    	{
             //vTaskDelay( 1000 / portTICK_PERIOD_MS );
             while(m==1)
              {
-           read_sensors();
-           calc_sensor_values();
+        	    read_sensors();
+        	    calc_sensor_values();
                    extra_sensors();
               //  bot_spot_right(MCPWM_UNIT_0, MCPWM_TIMER_0, 70, 0);
                 bot_spot_left(MCPWM_UNIT_0, MCPWM_TIMER_0, 68, 68);
@@ -435,7 +486,7 @@ void turning()
             while(m==1)
             {
                  read_sensors();
-           calc_sensor_values();
+        	    calc_sensor_values();
                // bot_spot_right(MCPWM_UNIT_0, MCPWM_TIMER_0, 68, 68);
                 bot_spot_left(MCPWM_UNIT_0, MCPWM_TIMER_0, 68, 68);
                 if (sensor_value[1]>=150 && sensor_value[2]>=150)
@@ -576,9 +627,6 @@ void line_follow(void *arg)
         turn_detection();
         plot_graph();
         turning();
-        nvs_flash_init();
-        x = get_from_flash();
-        save_to_flash(x);
         //distance();
         //blink();
         printf("%d",n);
@@ -600,11 +648,7 @@ void line_follow(void *arg)
 
 void app_main()
 {
-    char x;
     mcpwm_initialize();
     nvs_flash_init();
-    x = get_from_flash();
-    save_to_flash(x);
     xTaskCreate(&line_follow,"line following",100000,NULL,1,NULL);
 }
-
