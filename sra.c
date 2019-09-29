@@ -260,13 +260,6 @@ char* get_from_flash()
     return value;    
 }
 
-void run_task()
-{
-    save_to_flash("vedant great coder");
-    char* ms = get_from_flash();
-
-    printf("message: %s\n", ms);
-}
 
 void app_main()
 {
