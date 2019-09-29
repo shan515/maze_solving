@@ -86,8 +86,8 @@ void bot_spot_right(mcpwm_unit_t mcpwm_num, mcpwm_timer_t timer_num , float duty
 
 void bot_stop(mcpwm_unit_t mcpwm_num, mcpwm_timer_t timer_num);
 
-int* get_from_flash();
+char* get_from_flash();
 
-void save_to_flash(int* message);
+void save_to_flash(char* message);
 
 #endif
