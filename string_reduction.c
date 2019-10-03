@@ -137,6 +137,10 @@ int main()
     }
     printf("%d\n", x );
     printf("%s\n",final);
+    save_to_flash(final);
+    char* ms = get_from_flash();
+    printf("message: %s\n", ms);
+
 
 }
 
