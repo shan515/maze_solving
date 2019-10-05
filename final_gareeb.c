@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+  //#include <bits/stdc++.h>
 #include <stdlib.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -9,7 +9,7 @@
 
 #include "SRA18.h"
 #include "TUNING.h"
-using namespace std;
+//using namespace std;
 
 /*
 LUL - S
@@ -143,8 +143,8 @@ static void calculate_correction()
 }
 
 char string[30] = { };
-int v=0;
-void nodecheck()
+int v=0,len1=0;
+char* nodecheck()
 {
     extra_sensors();
 
@@ -258,23 +258,24 @@ void nodecheck()
         int flag =0;
         for (int i=0 ; i<len1; i++)
         {
-        	while(a[i] != 'E')
+        	while(string[i] != 'E')
         	{
-        		flag+=1;		
+        		flag+=1;
         	}
         }
         char b[flag];
+        return b;
 
 
 }
 
 
-void string_reduction (char* a)
+void string_reduction (char a[])
 {
 	int count=0;
   //char a[] = {'L','R','R','L','L','U','L','R','U','R','L','L','U','S','L','L','L','R'};
     int len = sizeof(a);
-    char a[len];
+    //char a[len];
     for(int i=0; i<len; i++)
     {
       if(a[i+1]=='U')
@@ -394,7 +395,7 @@ void follow_node ()
 {
 	char *path =get_from_flash();
 	int count =0;
-	len = sizeof(path);
+	int len = sizeof(path);
 	for (int i=0; i<len ;i++)
 	{
 		if (sensor_value[1]>150 && sensor_value[2]>150 && (sensor_value[0] || sensor_value[3]))
@@ -411,7 +412,7 @@ void follow_node ()
 				bot_spot_right(MCPWM_UNIT_0, MCPWM_TIMER_0, 80, 80);
 			}
 
-			else 
+			else
 			{
 				bot_forward(MCPWM_UNIT_0, MCPWM_TIMER_0, left_pwm, right_pwm);
 			}
@@ -438,7 +439,8 @@ void line_follow_task(void *arg)
     left_pwm = constrain((opt - correction), lower_pwm_constrain, higher_pwm_constrain);
     right_pwm = constrain((opt + correction), lower_pwm_constrain, higher_pwm_constrain);
     bot_forward(MCPWM_UNIT_0, MCPWM_TIMER_0, left_pwm, right_pwm);
-    nodecheck();
+    char* b = nodecheck();
+    //nodecheck();
     string_reduction(b);
 
     if(pressed_switch(BUTTON_1))
@@ -467,4 +469,3 @@ void app_main()
 {
     xTaskCreate(&line_follow_task,"line_follow_task",100000,NULL,1,NULL);
 }
-
